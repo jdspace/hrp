@@ -1,0 +1,28 @@
+# %% ant test V3 using Bluetooth
+import asyncio
+from bleak import BleakScanner
+
+async def scan():
+    print("🔍 Scanning for Bluetooth devices...")
+    print("Make sure your CycPlus H1 monitors are ON\n")
+    
+    devices = await BleakScanner.discover(timeout=10.0)
+    
+    print(f"Found {len(devices)} Bluetooth devices:")
+    for device in devices:
+        print(f"  {device.name} - {device.address}")
+        if device.name and ("CYCPLUS" in device.name.upper() or 
+                           "H1" in device.name.upper() or
+                           "51861" in device.address or 
+                           "51950" in device.address):
+            print(f"    ✅ CycPlus H1 found!")
+
+# Run differently to avoid event loop conflict
+if __name__ == "__main__":
+    try:
+        loop = asyncio.get_event_loop()
+        loop.run_until_complete(scan())
+    except RuntimeError:
+        # If event loop already running, create new one
+        asyncio.run(scan())
+# %%

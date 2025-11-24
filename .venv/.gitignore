@@ -1,0 +1,26 @@
+# R / RStudio
+.Rhistory
+.RData
+.Rproj.user/
+.Rproj
+.Ruserdata
+
+# Quarto / knitr
+*_cache/
+_cache/
+*.utf8.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.ipynb_checkpoints
+
+# OS-specific
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Other logs/temp
+*.log
